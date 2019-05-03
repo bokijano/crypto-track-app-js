@@ -49,11 +49,30 @@ body .currencies td {
   font-family: "Roboto", sans-serif;
 }
 
+body .currencies .diplayNone {
+  display: none;
+}
+
 body .currencies .green-value {
   color: #045a04;
 }
 
 body .currencies .red-value {
   color: red;
+}
+
+.amount-button {
+  width: 170px;
+  height: 15px;
+  cursor: pointer;
+  font-size: 10px;
+  background-color: lightgrey;
+  margin-top: -3px;
+  font-weight: bolder;
+}
+
+.amount-input {
+  width: 170px;
+  height: 15px;
 }
 /*# sourceMappingURL=cryptotrack.css.map */

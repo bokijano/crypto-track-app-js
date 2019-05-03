@@ -64,3 +64,17 @@ body {
     }
   }
 }
+
+.amount-button {
+  width: 170px;
+  height: 15px;
+  cursor: pointer;
+  font-size: 10px;
+  background-color: color(table-head);
+  margin-top: -3px;
+  font-weight: bolder;
+}
+.amount-input {
+  width: 170px;
+  height: 15px;
+}
