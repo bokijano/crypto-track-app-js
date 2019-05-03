@@ -1,0 +1,66 @@
+$colors: (
+  body-color: whitesmoke,
+  table-head: lightgrey,
+  table-body-even: grey,
+  plus: rgb(4, 90, 4),
+  minus: red
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+body {
+  background-color: color(body-color);
+
+  h1 {
+    font-family: "Gugi", cursive;
+    text-align: center;
+  }
+
+  .currencies {
+    border-collapse: collapse;
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+
+    tr {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    .currency-row:nth-child(even) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      background-color: color(table-body-even);
+    }
+
+    th {
+      font-family: "Anton", sans-serif;
+      background-color: color(table-head);
+      text-align: center;
+      border: 1px solid #333;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px;
+      padding: 8px;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .diplayNone {
+      display: none;
+    }
+    .green-value {
+      color: color(plus);
+    }
+    .red-value {
+      color: color(minus);
+    }
+  }
+}

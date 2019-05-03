@@ -1,0 +1,59 @@
+body {
+  background-color: whitesmoke;
+}
+
+body h1 {
+  font-family: "Gugi", cursive;
+  text-align: center;
+}
+
+body .currencies {
+  border-collapse: collapse;
+  width: 90vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+body .currencies tr {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+body .currencies .currency-row:nth-child(even) {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: grey;
+}
+
+body .currencies th {
+  font-family: "Anton", sans-serif;
+  background-color: lightgrey;
+  text-align: center;
+  border: 1px solid #333;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 5px 10px;
+          box-shadow: 5px 5px 10px;
+  padding: 8px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+body .currencies td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+body .currencies .green-value {
+  color: #045a04;
+}
+
+body .currencies .red-value {
+  color: red;
+}
+/*# sourceMappingURL=cryptotrack.css.map */
