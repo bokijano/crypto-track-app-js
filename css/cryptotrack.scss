@@ -78,3 +78,49 @@ body {
   width: 170px;
   height: 15px;
 }
+.close-cart {
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+
+.cart-overlay {
+  /*  display: none; */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: var(--mainTransition);
+  background: whitesmoke;
+  z-index: 2;
+  visibility: hidden;
+}
+.cart {
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  background: whitesmoke;
+  z-index: 3;
+  padding: 1.5rem;
+  transition: var(--mainTransition);
+  transform: translateX(100%);
+}
+
+.showCart {
+  transform: translateX(0);
+}
+.transparent {
+  visibility: visible;
+}
+
+.cart-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2.5rem;
+  margin: 1.5rem 1rem 0;
+}

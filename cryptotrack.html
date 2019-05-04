@@ -7,6 +7,14 @@
     <title>CryptoTrack App</title>
     <link rel="icon" type="image/jpg" href="images/bitcoin.jpg" sizes="16x16" />
 
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
     <!-- googlefonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Anton|Gugi|Roboto"
@@ -35,7 +43,33 @@
         <tr class="currency-row"></tr>
       </tbody>
     </table>
+    <!-- end of table -->
 
+    <!-- cart with crytocurrency amount the user has -->
+    <div class="cart-overlay">
+      <div class="cart">
+        <span onclick="moveCart()" class="close-cart">
+          <i class="fas fa-window-close"></i>
+        </span>
+        <h3 class="fontTwo">Total $ value of your coin</h3>
+          <!-- cart-tem-->
+          <table class="cart-content">
+            <!--<tr class="cart-item">
+        
+            </tr>-->
+          </table>
+          <!-- end of cart item -->
+        <div class="cart-footer">
+          <h3>Your total: <span class="cart-total">0</span> RSD</h3>
+          <button class="btn btn-warning clear-cart fontFive">
+            Clear cart
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- end of the cart -->
+
+    <!-- JavaScript file -->
     <script src="cryptotrack.js"></script>
   </body>
 </html>

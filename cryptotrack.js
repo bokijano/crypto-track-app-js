@@ -1,6 +1,13 @@
+moveCart = () => {
+  document.querySelector(".cart-overlay").classList.remove("transparent");
+  document.querySelector(".cart").classList.remove("showCart");
+};
+
 //variables
 
 const displayRow = document.querySelector(".currency-row");
+const currencyTotal = document.querySelector(".total-value");
+const cartContent = document.querySelector(".cart-content");
 
 // list of owner currencies
 let list = [];
@@ -44,7 +51,7 @@ class UI {
         <button class="amount-button" data-id=${currency.id}>Submit</button>
       </td>   
       
-      <td id="ownValue">$ 0.0</td>
+      <td>$ <span class="total-value">0<span></td>
       `;
     });
     displayRow.innerHTML = result;
@@ -53,7 +60,7 @@ class UI {
   getAmountButtons = () => {
     const buttons = [...document.querySelectorAll(".amount-button")];
     buttonsDOM = buttons;
-    button.forEach(button => {
+    buttons.forEach(button => {
       let id = button.dataset.id;
       let listItem = list.find(item => item.id === id);
       if (listItem) {
@@ -65,7 +72,7 @@ class UI {
         event.target.disabled = true;
 
         // get currency from currencies
-        let currencyItem = { ...Storage.getCurrency(id), amount: 0 };
+        let currencyItem = { ...Storage.getCurrency(id), amount: 2 };
         console.log(currencyItem);
 
         // add currency to the list
@@ -78,18 +85,42 @@ class UI {
         this.setListValues(list);
 
         // display currency value
+        this.addListItem(currencyItem);
 
         // show list of your currencies
+        this.showCart();
       });
     });
   };
   setListValues(list) {
     let tempTotal = 0;
-    let itemsTotal = 0;
     list.map(item => {
-      tempTotal += item.price = item.amount;
-      itemsTotal += item.amount;
-    })
+      tempTotal = item.price * item.amount;
+    });
+    // currencyTotal.innerText = parseFloat(tempTotal.toFixed(2));
+  }
+  addListItem(item) {
+    const tr = document.createElement("tr");
+    tr.classList.add("cart-item");
+    tr.innerHTML = `
+    <td>${item.name}</td>
+    <td>${item.symbol}</td>
+    <td>$ ${item.price.toFixed(2)}</td>
+    <td class="red-value">${item.percent_change_24h.toFixed(2)}</td> 
+    
+    <td>
+      <input id="amount" class="amount-input" type="text" 
+         value=${item.amount} />
+      <button class="amount-button" data-id=${item.id}>Submit</button>
+    </td>   
+    
+    <td>$ <span class="total-value">0<span></td> 
+    `;
+    cartContent.appendChild(tr);
+  }
+  showCart() {
+    document.querySelector(".cart-overlay").classList.add("transparent");
+    document.querySelector(".cart").classList.add("showCart");
   }
 }
 
