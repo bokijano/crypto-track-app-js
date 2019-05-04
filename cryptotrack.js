@@ -1,4 +1,4 @@
-moveCart = () => {
+closeCart = () => {
   document.querySelector(".cart-overlay").classList.remove("transparent");
   document.querySelector(".cart").classList.remove("showCart");
 };
@@ -11,7 +11,6 @@ const cartContent = document.querySelector(".cart-content");
 
 // list of owner currencies
 let list = [];
-let buttonsDOM = [];
 
 // getting the currency from JSON file
 class Currency {
@@ -43,7 +42,7 @@ class UI {
       <td>${currency.name}</td>
       <td>${currency.symbol}</td>
       <td>$ ${currency.price.toFixed(2)}</td>
-      <td class="red-value">${currency.percent_change_24h.toFixed(2)}</td> 
+      <td>${currency.percent_change_24h.toFixed(2)}</td> 
       
       <td>
         <input id="amount" class="amount-input" type="text" 
@@ -59,7 +58,6 @@ class UI {
 
   getAmountButtons = () => {
     const buttons = [...document.querySelectorAll(".amount-button")];
-    buttonsDOM = buttons;
     buttons.forEach(button => {
       let id = button.dataset.id;
       let listItem = list.find(item => item.id === id);
@@ -72,8 +70,7 @@ class UI {
         event.target.disabled = true;
 
         // get currency from currencies
-        let currencyItem = { ...Storage.getCurrency(id), amount: 2 };
-        console.log(currencyItem);
+        let currencyItem = { ...Storage.getCurrency(id), amount: 0 };
 
         // add currency to the list
         list = [...list, currencyItem];
@@ -97,7 +94,7 @@ class UI {
     list.map(item => {
       tempTotal = item.price * item.amount;
     });
-    // currencyTotal.innerText = parseFloat(tempTotal.toFixed(2));
+    currencyTotal.innerText = parseFloat(tempTotal.toFixed(2));
   }
   addListItem(item) {
     const tr = document.createElement("tr");
@@ -106,7 +103,7 @@ class UI {
     <td>${item.name}</td>
     <td>${item.symbol}</td>
     <td>$ ${item.price.toFixed(2)}</td>
-    <td class="red-value">${item.percent_change_24h.toFixed(2)}</td> 
+    <td class="percent-change">${item.percent_change_24h.toFixed(2)}</td> 
     
     <td>
       <input id="amount" class="amount-input" type="text" 
@@ -121,6 +118,14 @@ class UI {
   showCart() {
     document.querySelector(".cart-overlay").classList.add("transparent");
     document.querySelector(".cart").classList.add("showCart");
+  }
+  setupAPP() {
+    list = Storage.getList();
+    this.setListValues(list);
+    this.populateList(list);
+  }
+  populateList(list) {
+    list.forEach(item => this.addListItem(item));
   }
 }
 
@@ -138,11 +143,20 @@ class Storage {
   static saveList() {
     localStorage.setItem("list", JSON.stringify(list));
   }
+
+  static getList() {
+    return localStorage.getItem("list")
+      ? JSON.parse(localStorage.getItem("list"))
+      : [];
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const currency = new Currency();
+
+  //setup aplication
+  ui.setupAPP();
 
   // get all currencies
   currency
